@@ -1,97 +1,311 @@
 # SIR1 – Primena mašinskog učenja u detekciji mrežnih napada
 
-*Application of Machine Learning in Network Intrusion Detection*
-Master akademske studije, Elektronski fakultet Univerziteta u Nišu – predmet SIR1.
+## O projektu
 
-Projekat poredi tri klasična algoritma (**Decision Tree, Random Forest, SVM**) na skupu
-**UNSW-NB15** (zvanična podela na trening i test skup) u zadatku **binarne klasifikacije**
-(`label`: 0 = normalan saobraćaj, 1 = napad). Priprema za višeklasnu klasifikaciju (`attack_cat`)
-postoji u kodu (`get_xy(df, task="multiclass")`), ali višeklasni eksperiment nije deo ovog rada.
+Ovaj projekat se bavi primenom i uporednom analizom algoritama mašinskog učenja u oblasti detekcije mrežnih napada (Network Intrusion Detection).
 
-## 1. Preuzimanje i postavljanje dataseta
-1. Preuzmite UNSW-NB15 sa zvanične stranice: <https://research.unsw.edu.au/projects/unsw-nb15-dataset>
-   (sekcija sa „training and testing sets“).
-2. Datoteke postavite u `data/raw/`:
-   - `UNSW_NB15_training-set.csv` (175.341 zapis)
-   - `UNSW_NB15_testing-set.csv` (82.332 zapisa)
-   - `UNSW-NB15_features.csv` (opis karakteristika; nije obavezan za eksperiment)
-3. Dataset se ne uključuje u Git (`.gitignore`). Za akademsku upotrebu važe uslovi citiranja sa zvanične stranice.
+Cilj istraživanja je implementacija, evaluacija i poređenje odabranih algoritama mašinskog učenja radi utvrđivanja njihove efikasnosti u razlikovanju normalnog i zlonamernog mrežnog saobraćaja.
 
-## 2. Instalacija
+Za eksperimentalni deo koristi se UNSW-NB15 skup podataka, koji sadrži primere normalnog mrežnog saobraćaja i različitih kategorija sajber napada.
+
+**Osnovni podaci o projektu:**
+
+- Predmet: Studijsko-istraživački rad 1 (SIR1)
+- Institucija: Elektronski fakultet Univerziteta u Nišu
+- Oblast: Mašinsko učenje i sajber bezbednost
+- Tip problema: Binarna klasifikacija
+
+## Ciljevi istraživanja
+
+- Analiza UNSW-NB15 skupa podataka.
+- Priprema i obrada podataka za primenu algoritama mašinskog učenja.
+- Implementacija odabranih algoritama klasifikacije.
+- Evaluacija performansi primenjenih modela.
+- Analiza uticaja karakteristika na rezultate klasifikacije.
+- Uporedna analiza algoritama na osnovu evaluacionih metrika.
+- Ispitivanje pouzdanosti eksperimentalnih rezultata.
+
+## Korišćeni algoritmi
+
+U okviru istraživanja implementirana su tri pristupa mašinskom učenju:
+
+| Algoritam | Opis |
+|---|---|
+| Decision Tree | Klasifikacija zasnovana na stablu odlučivanja |
+| Random Forest | Ansambl algoritam koji kombinuje više stabala odlučivanja |
+| Support Vector Machine (SVM) | Klasifikacija pomoću optimalne granice razdvajanja klasa |
+
+Kod SVM algoritma razmatraju se dve implementacije:
+
+- LinearSVC – linearni pristup klasifikaciji.
+- SVC sa RBF kernelom – nelinearni pristup klasifikaciji.
+
+## Skup podataka – UNSW-NB15
+
+Za potrebe istraživanja koristi se UNSW-NB15 skup podataka, razvijen za istraživanja u oblasti detekcije mrežnih napada.
+
+Skup sadrži normalne mrežne aktivnosti i više kategorija napada, kao što su Fuzzers, DoS, Exploits, Generic i Reconnaissance.
+
+**Zvanični izvor:**
+
+https://research.unsw.edu.au/projects/unsw-nb15-dataset
+
+Osnovne karakteristike korišćenih podataka:
+
+| Podskup | Broj zapisa |
+|---|---:|
+| Trening skup | 175.341 |
+| Test skup | 82.332 |
+| Ukupno | 257.673 |
+
+U glavnim eksperimentima koristi se zvanična podela na trening i test skup.
+
+### Definisanje klasifikacionog problema
+
+Glavni eksperimentalni zadatak predstavlja binarnu klasifikaciju:
+
+- `0` – normalan mrežni saobraćaj.
+- `1` – mrežni napad.
+
+Originalne CSV datoteke nisu uključene u GitHub repozitorijum zbog njihove veličine.
+
+Potrebno ih je preuzeti sa zvaničnog izvora i smestiti u direktorijum `data/raw/`.
+
+Potrebne datoteke:
+
+- `UNSW_NB15_training-set.csv`
+- `UNSW_NB15_testing-set.csv`
+- `UNSW-NB15_features.csv` (opciono).
+
+## Tehnologije i alati
+
+| Tehnologija | Namena |
+|---|---|
+| Python | Glavni programski jezik |
+| Pandas | Obrada i analiza podataka |
+| NumPy | Numeričke operacije |
+| Scikit-learn | Implementacija algoritama i evaluacija |
+| Matplotlib | Grafički prikaz rezultata |
+| Jupyter Notebook | Istraživačka analiza podataka |
+
+## Metodologija i priprema podataka
+
+Priprema podataka predstavlja važan deo istraživanja jer kvalitet ulaznih podataka direktno utiče na performanse modela mašinskog učenja.
+
+U okviru projekta primenjuju se sledeći postupci:
+
+1. Učitavanje i provera integriteta podataka.
+2. Razdvajanje ulaznih karakteristika i ciljne promenljive.
+3. Obrada nedostajućih vrednosti.
+4. Logaritamska transformacija odabranih numeričkih karakteristika.
+5. Kodiranje kategoričkih karakteristika pomoću OneHotEncoder.
+6. Standardizacija numeričkih karakteristika pomoću StandardScaler.
+7. Formiranje pipeline strukture za pripremu i treniranje modela.
+
+### Sprečavanje Data Leakage problema
+
+Posebna pažnja posvećena je sprečavanju curenja podataka (Data Leakage), koje može dovesti do nerealno visokih rezultata evaluacije.
+
+Primenjene su sledeće mere:
+
+- Transformatori se prilagođavaju isključivo na trening podacima.
+- Predobrada podataka realizovana je unutar Scikit-learn Pipeline strukture.
+- Tokom unakrsne validacije predobrada se nezavisno prilagođava unutar svakog fold-a.
+- Test skup se ne koristi za izbor hiperparametara.
+- Identifikacione i ciljne kolone isključuju se iz ulaznih karakteristika.
+- Nepoznate kategoričke vrednosti obrađuju se pomoću odgovarajućeg OneHotEncoder podešavanja.
+
+Originalna podela na trening i test skup zadržava se tokom glavnih eksperimenata.
+
+## Eksperimentalna evaluacija
+
+Performanse algoritama analiziraju se primenom sledećih evaluacionih metrika:
+
+- **Accuracy** – ukupna tačnost klasifikacije.
+- **Precision** – preciznost pozitivnih predikcija.
+- **Recall** – sposobnost prepoznavanja pozitivnih primera.
+- **F1-score** – harmonijska sredina preciznosti i odziva.
+- **Confusion Matrix** – matrica konfuzije koja prikazuje rezultate klasifikacije.
+
+Pored osnovnih metrika, projekat obuhvata dodatne eksperimentalne analize:
+
+- Optimizaciju hiperparametara pomoću GridSearchCV.
+- Stratifikovanu unakrsnu validaciju.
+- Bootstrap intervale poverenja.
+- McNemar statistički test za poređenje modela.
+- Ablation analizu radi ispitivanja uticaja odabranih karakteristika.
+- Merenje vremena treniranja i predikcije.
+- Uporednu analizu rezultata algoritama.
+
+## Struktura projekta
+
+```text
+machine-learning-network-attacks/
+│
+├── data/
+│   ├── raw/
+│   └── processed/
+│
+├── notebooks/
+│   └── exploratory_analysis.ipynb
+│
+├── src/
+│   ├── config.py
+│   ├── data_loader.py
+│   ├── preprocessing.py
+│   ├── experiment.py
+│   ├── decision_tree.py
+│   ├── random_forest.py
+│   ├── svm.py
+│   ├── evaluation.py
+│   ├── visualization.py
+│   ├── eda.py
+│   ├── ablation.py
+│   └── comparison.py
+│
+├── results/
+│   ├── metrics/
+│   └── figures/
+│
+├── reports/
+├── defense/
+├── logs/
+├── tests/
+│
+├── main.py
+├── requirements.txt
+├── .gitignore
+└── README.md
+```
+
+### Opis najvažnijih direktorijuma
+
+- `data/` – originalni i obrađeni podaci.
+- `notebooks/` – istraživačka analiza podataka.
+- `src/` – implementacija algoritama, predobrada, treniranje i evaluacija.
+- `results/metrics/` – rezultati eksperimenata u JSON i CSV formatima.
+- `results/figures/` – grafikoni i vizuelni prikazi rezultata.
+- `reports/` – generisanje seminarskog rada.
+- `defense/` – materijali za pripremu odbrane.
+- `logs/` – zapisi o izvršavanju eksperimenata.
+- `tests/` – automatski testovi ispravnosti.
+
+## Instalacija i podešavanje okruženja
+
+### 1. Kloniranje repozitorijuma
+
 ```bash
-python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
+git clone https://github.com/Boxon00/machine-learning-network-attacks.git
+
+cd machine-learning-network-attacks
+```
+
+### 2. Kreiranje virtuelnog okruženja
+
+Za Windows:
+
+```powershell
+python -m venv .venv
+
+.venv\Scripts\activate
+```
+
+### 3. Instalacija potrebnih biblioteka
+
+```bash
 pip install -r requirements.txt
 ```
-Testirano sa Python 3.12, scikit-learn 1.9, pandas 3.0 (tačne verzije: `results/metrics/environment.json`).
 
-## 3. Pokretanje
+Nakon preuzimanja UNSW-NB15 skupa podataka, potrebno je smestiti odgovarajuće CSV datoteke u direktorijum `data/raw/`.
+
+## Pokretanje projekta
+
+Glavni eksperimentalni proces pokreće se komandom:
+
 ```bash
-python main.py                    # ceo eksperiment: EDA -> DT -> RF -> SVM -> ablacija -> skaliranje -> poređenje
-python main.py --stage eda        # samo EDA
-python main.py --stage dt         # samo Decision Tree (isto: python -m src.decision_tree)
-python main.py --stage rf         # samo Random Forest (python -m src.random_forest)
-python main.py --stage svm        # samo SVM (python -m src.svm)
-python main.py --stage ablation   # analiza osetljivosti (ablacija)
-python main.py --stage scaling    # skaliranje vremena treniranja
-python main.py --stage compare    # završna tabela i grafikoni
-python main.py --quick            # SAMO provera koda (mali uzorci, upis u results_quick/)
+python main.py
+```
+
+### Pokretanje pojedinačnih faza
+
+```bash
+python main.py --stage eda
+python main.py --stage dt
+python main.py --stage rf
+python main.py --stage svm
+python main.py --stage ablation
+python main.py --stage scaling
+python main.py --stage compare
+```
+
+Za brzu proveru ispravnosti programa:
+
+```bash
+python main.py --quick
+```
+
+Brza provera koristi manje uzorke i rezultate upisuje u `results_quick/`, bez zamene glavnih eksperimentalnih rezultata.
+
+Za pokretanje istraživačke Jupyter sveske:
+
+```bash
 jupyter notebook notebooks/exploratory_analysis.ipynb
 ```
-Pun eksperiment traje oko 12 minuta na jednom jezgru (izmereno u ovom radu: DT ~1,5 min, RF ~4,5 min, SVM ~3 min, ablacija ~2 min).
-Redosled faza je bitan: `compare` i `ablation` čitaju rezultate koje prethodne faze upisuju.
 
-## 3a. Testovi ispravnosti
+**Napomena:** Za kompletno izvršavanje eksperimenta potrebno je prethodno pripremiti dataset. Završna faza poređenja i dodatne analize zavise od rezultata prethodno izvršenih faza.
+
+## Testiranje ispravnosti
+
+Projekat sadrži automatizovane testove kojima se proveravaju različiti aspekti implementacije.
+
+Pokretanje testova:
+
 ```bash
-python -m unittest discover -s tests -v     # 15 testova; "skipped" znaci da nema dataseta/rezultata
-```
-Proveravaju: zvanične dimenzije i broj klasa, da `id`/`label`/`attack_cat` nisu ulaz, da se preprocesor uči samo na treningu,
-obradu nepoznatih kategorija (`ACC`, `CLO`), tačnost metrika na ručno izračunatom primeru, reproduktivnost,
-i da se sačuvana tabela rezultata poklapa sa sačuvanim predikcijama.
-
-## 3b. Generisanje dokumenata (opciono)
-```bash
-python reports/build_report.py     # seminarski rad (DOCX; PDF ako su instalirani LibreOffice i poppler-utils)
-python defense/build_qa.py         # pitanja i odgovori za odbranu (DOCX)
-npm install pptxgenjs && node defense/build_deck.js   # prezentacija (PPTX)
-```
-Dokumenti se generišu iz `results/metrics` i `results/figures`, pa prvo pokrenite `python main.py`.
-Ime studenta, indeks i mentora na naslovnoj strani zamenite u `reports/build_report.py` (funkcija `title_page`) i `defense/build_deck.js`.
-
-## 4. Struktura projekta
-```
-data/raw/            sirove CSV datoteke (ne ulaze u Git)
-data/processed/      rezervisano za međuproizvode
-notebooks/           exploratory_analysis.ipynb
-src/config.py        putanje, seed (42), veličine uzoraka, broj jezgara
-src/data_loader.py   učitavanje, provera seme, get_xy (izbor cilja), uzorkovanje
-src/preprocessing.py imputacija -> log1p -> StandardScaler; OneHotEncoder (sve u Pipeline-u)
-src/experiment.py    zajedničko: tuning (GridSearchCV), treniranje, merenje vremena, čuvanje
-src/decision_tree.py, random_forest.py, svm.py   po jedan modul za svaki algoritam
-src/evaluation.py    metrike, bootstrap CI, McNemar, tabela poređenja
-src/visualization.py svi grafikoni
-src/eda.py, ablation.py, comparison.py
-results/metrics/     JSON/CSV rezultati;   results/figures/  PNG grafikoni
-reports/             seminarski rad (DOCX/PDF) i skripta za generisanje
-defense/             prezentacija i pitanja za odbranu
-main.py, requirements.txt, README.md, .gitignore
+python -m unittest discover -s tests -v
 ```
 
-## 5. Ključne metodološke odluke
-- **Zvanična podela** trening/test se ne menja. Test skup se ne koristi za izbor hiperparametara ni preprocesiranja.
-- **Bez curenja podataka:** preprocesiranje je deo `Pipeline`-a i uči se samo na treningu (u unakrsnoj validaciji
-  ponovo u svakom foldu). `id`, `label` i `attack_cat` nikada nisu ulazne karakteristike (`get_xy`).
-- **Nepoznate kategorije:** test sadrži vrednosti `state` (`ACC`, `CLO`) kojih nema u treningu → `handle_unknown="ignore"`.
-- **Hiperparametri:** `GridSearchCV` (stratifikovani 3-fold, F1) na stratifikovanom uzorku od 50.000 zapisa treninga;
-  konačni modeli se treniraju na celom treningu. Broj stabala RF i dubina DT biraju se na podeli 80/20 unutar treninga.
-- **SVM:** `LinearSVC` na celom treningu; RBF `SVC` na stratifikovanom uzorku od 20.000 zapisa (računska zahtevnost).
-  Rezultati RBF modela odnose se na model treniran na uzorku, ali su evaluirani na **celom** test skupu.
-  Dodatno se evaluira `LinearSVC` na istom uzorku radi izolovanja efekta kernela.
-- **Vremena:** fitovanje i predikcija se mere sa jednim jezgrom (`N_JOBS_FIT=1`); uključuju preprocesiranje.
-- **Duplikati** se u glavnom eksperimentu zadržavaju (zvanična podela); uticaj uklanjanja je u ablacionoj studiji,
-  zajedno sa uklanjanjem `stcpb`/`dtcpb`.
-- **Reproduktivnost:** `random_state=42` svuda; verzije softvera u `results/metrics/environment.json`.
-  Rezultati mogu neznatno odstupati na drugoj verziji biblioteka ili broju jezgara (vremena zavise od hardvera).
+Testovi obuhvataju:
 
-## 6. Literatura i dataset
-Dataset: Moustafa & Slay (2015, 2016) – vidi seminarski rad, poglavlje „Literatura“. Zvanična stranica:
-<https://research.unsw.edu.au/projects/unsw-nb15-dataset>. Pre predaje rada proverite svaki DOI iz liste literature.
+- Proveru dimenzija i broja klasa u datasetu.
+- Proveru isključivanja identifikacionih i ciljnih kolona iz ulaznih karakteristika.
+- Proveru pravilnog prilagođavanja predprocesora na trening podacima.
+- Obradu nepoznatih kategoričkih vrednosti.
+- Proveru evaluacionih metrika.
+- Reproduktivnost eksperimentalnih rezultata.
+- Usklađenost sačuvanih rezultata i predikcija.
+
+Za generisanje dokumenata i prezentacije potrebno je prethodno izvršiti glavni eksperimentalni proces.
+
+## Reproduktivnost eksperimenata
+
+Radi obezbeđivanja ponovljivosti rezultata, u projektu se koristi fiksirana vrednost slučajnog semena:
+
+`random_state = 42`
+
+Verzije softverskih biblioteka i informacije o eksperimentalnom okruženju čuvaju se u:
+
+`results/metrics/environment.json`
+
+Rezultati mogu neznatno odstupati u različitim softverskim i hardverskim okruženjima, naročito kada je reč o vremenu izvršavanja.
+
+## Literatura i izvori podataka
+
+Moustafa, N. i Slay, J. (2015, 2016). UNSW-NB15 – A comprehensive data set for network intrusion detection systems.
+
+Zvanična stranica skupa podataka:
+
+https://research.unsw.edu.au/projects/unsw-nb15-dataset
+
+Dodatna naučna literatura i korišćeni izvori navedeni su u seminarskom radu.
+
+---
+
+## Autor
+
+**Boxon00**
+
+GitHub: https://github.com/Boxon00
+
+**Projekat:** Primena mašinskog učenja u detekciji mrežnih napada  
+**Predmet:** Studijsko-istraživački rad 1 (SIR1)  
+**Institucija:** Elektronski fakultet Univerziteta u Nišu
