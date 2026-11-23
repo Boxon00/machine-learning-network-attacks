@@ -1,0 +1,14 @@
+# Podaci (velike datoteke, preuzimaju se sa zvanicnog izvora)
+data/raw/*.csv
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+# Veliki medjurezultati
+results/metrics/*.npz
+*.joblib

@@ -1,0 +1,4 @@
+kolona,vrednosti_trening,vrednosti_test,samo_u_testu,samo_u_treningu
+proto,133,131,-,"icmp, rtp"
+service,13,13,-,-
+state,9,7,"ACC, CLO","ECO, PAR, URN, no"

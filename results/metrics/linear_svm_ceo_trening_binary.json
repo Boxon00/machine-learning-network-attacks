@@ -1,0 +1,154 @@
+{
+  "model": "Linear SVM (ceo trening)",
+  "task": "binary",
+  "params": {
+    "C": 10
+  },
+  "n_train": 175341,
+  "n_test": 82332,
+  "n_features_after_encoding": 194,
+  "fit_time_s": 18.571972799953073,
+  "predict_time_s": 0.24847610003780574,
+  "predict_time_per_1000_s": 0.0030179772146650846,
+  "test_metrics": {
+    "accuracy": 0.8138998202400038,
+    "precision": 0.7543134131046405,
+    "recall": 0.9817788758492897,
+    "f1": 0.8531447083405218,
+    "balanced_accuracy": 0.794997546032753,
+    "mcc": 0.6512698374990443,
+    "specificity": 0.6082162162162162,
+    "fpr": 0.39178378378378376,
+    "fnr": 0.018221124150710314,
+    "tn": 22504,
+    "fp": 14496,
+    "fn": 826,
+    "tp": 44506,
+    "roc_auc": 0.9569827316065737,
+    "pr_auc": 0.9675794488293069
+  },
+  "train_metrics": {
+    "accuracy": 0.9361244660404583,
+    "precision": 0.9211983828375125,
+    "recall": 0.9909167846758449,
+    "f1": 0.9547865683812784,
+    "balanced_accuracy": 0.9051369637664939,
+    "mcc": 0.8530663979585564,
+    "specificity": 0.8193571428571429,
+    "fpr": 0.18064285714285713,
+    "fnr": 0.009083215324155153,
+    "tn": 45884,
+    "fp": 10116,
+    "fn": 1084,
+    "tp": 118257
+  },
+  "log1p_columns": [
+    "dur",
+    "spkts",
+    "dpkts",
+    "sbytes",
+    "dbytes",
+    "rate",
+    "sload",
+    "dload",
+    "sloss",
+    "dloss",
+    "sinpkt",
+    "dinpkt",
+    "sjit",
+    "djit",
+    "tcprtt",
+    "synack",
+    "ackdat",
+    "smean",
+    "dmean",
+    "trans_depth",
+    "response_body_len",
+    "ct_dst_ltm",
+    "ct_src_dport_ltm",
+    "is_ftp_login",
+    "ct_ftp_cmd",
+    "ct_flw_http_mthd",
+    "is_sm_ips_ports"
+  ],
+  "test_ci95": {
+    "accuracy": [
+      0.8113601029976194,
+      0.81662051207307
+    ],
+    "precision": [
+      0.7507722558194313,
+      0.7578549999545036
+    ],
+    "recall": [
+      0.9805526720471085,
+      0.9829403132835242
+    ],
+    "f1": [
+      0.850768754523958,
+      0.8554776810563304
+    ]
+  },
+  "detection_by_category": [
+    {
+      "attack_cat": "Normal",
+      "n": 37000,
+      "detection_rate": 0.6082162162162162
+    },
+    {
+      "attack_cat": "Generic",
+      "n": 18871,
+      "detection_rate": 0.9995230777383286
+    },
+    {
+      "attack_cat": "Exploits",
+      "n": 11132,
+      "detection_rate": 0.9681099532878189
+    },
+    {
+      "attack_cat": "Fuzzers",
+      "n": 6062,
+      "detection_rate": 0.9343451006268558
+    },
+    {
+      "attack_cat": "DoS",
+      "n": 4089,
+      "detection_rate": 0.9887503056982148
+    },
+    {
+      "attack_cat": "Reconnaissance",
+      "n": 3496,
+      "detection_rate": 0.9977116704805492
+    },
+    {
+      "attack_cat": "Analysis",
+      "n": 677,
+      "detection_rate": 0.9970457902511078
+    },
+    {
+      "attack_cat": "Backdoor",
+      "n": 583,
+      "detection_rate": 0.9931389365351629
+    },
+    {
+      "attack_cat": "Shellcode",
+      "n": 378,
+      "detection_rate": 0.9920634920634921
+    },
+    {
+      "attack_cat": "Worms",
+      "n": 44,
+      "detection_rate": 0.9772727272727273
+    }
+  ],
+  "tuning": {
+    "best_params": {
+      "C": 10
+    },
+    "best_cv_score": 0.9556326351029792,
+    "scoring": "f1",
+    "n_tune": 50000,
+    "cv_folds": 3
+  },
+  "sampled": false
+}

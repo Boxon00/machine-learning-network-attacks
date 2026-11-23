@@ -1,0 +1,40 @@
+
+=== dt ===
+[DT] najbolji parametri: {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 5} (CV F1=0.9585)
+[DT] test: acc=0.8433 prec=0.7868 rec=0.9813 f1=0.8733 auc=0.9727 fit=3.63s pred=0.17s
+=== dt gotovo za 85.4s ===
+
+=== rf ===
+[RF] izabran broj stabala: 100
+[RF] najbolji parametri: {'max_depth': 25, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'n_estimators': 100} (CV F1=0.9646)
+[RF] test: acc=0.8694 prec=0.8146 rec=0.9877 f1=0.8928 auc=0.9812 fit=23.26s pred=0.95s
+=== rf gotovo za 264.5s ===
+
+=== svm ===
+[SVM-lin] najbolji parametri: {'C': 10} (CV F1=0.9556)
+[SVM-rbf] najbolji parametri: {'C': 1, 'gamma': 0.1} (CV F1=0.9579)
+[SVM:linear] acc=0.8139 prec=0.7543 rec=0.9818 f1=0.8531 auc=0.9569 fit=11.05s pred=0.17s
+[SVM:linear_sample] acc=0.8133 prec=0.7539 rec=0.9812 f1=0.8527 auc=0.9596 fit=1.99s pred=0.17s
+[SVM:rbf] acc=0.8229 prec=0.7596 rec=0.9927 f1=0.8606 auc=0.9402 fit=6.82s pred=41.88s
+=== svm gotovo za 172.8s ===
+
+=== ablation ===
+[ABL] Osnovni                        Decision Tree              acc=0.8433 rec=0.9813 f1=0.8733
+[ABL] Osnovni                        Random Forest              acc=0.8694 rec=0.9877 f1=0.8928
+[ABL] Osnovni                        Linear SVM (ceo trening)   acc=0.8139 rec=0.9818 f1=0.8531
+[ABL] Bez TCP seq. (stcpb, dtcpb)    Decision Tree              acc=0.8433 rec=0.9813 f1=0.8733
+[ABL] Bez TCP seq. (stcpb, dtcpb)    Random Forest              acc=0.8693 rec=0.9857 f1=0.8925
+[ABL] Bez TCP seq. (stcpb, dtcpb)    Linear SVM (ceo trening)   acc=0.8139 rec=0.9817 f1=0.8531
+[ABL] Bez duplikata                  Decision Tree              acc=0.7967 rec=0.9787 f1=0.7891
+[ABL] Bez duplikata                  Random Forest              acc=0.8270 rec=0.9774 f1=0.8145
+[ABL] Bez duplikata                  Linear SVM (ceo trening)   acc=0.7753 rec=0.9746 f1=0.7712
+=== ablation gotovo za 108.0s ===
+
+=== compare ===
+                   Model  N_trening  Accuracy  Precision  Recall     F1  ROC_AUC  PR_AUC    FPR    FNR    MCC  Vreme_treniranja_s  Vreme_predikcije_s
+           Decision Tree     175341    0.8433     0.7868  0.9813 0.8733   0.9727  0.9729 0.3258 0.0187 0.7030              3.6350              0.1747
+           Random Forest     175341    0.8694     0.8146  0.9877 0.8928   0.9812  0.9857 0.2755 0.0123 0.7521             23.2575              0.9521
+Linear SVM (ceo trening)     175341    0.8139     0.7543  0.9818 0.8531   0.9569  0.9675 0.3919 0.0182 0.6512             11.0476              0.1716
+        SVM RBF (uzorak)      20000    0.8229     0.7596  0.9927 0.8606   0.9402  0.9414 0.3850 0.0073 0.6729              6.8233             41.8834
+=== compare gotovo za 2.0s ===
+SVE GOTOVO

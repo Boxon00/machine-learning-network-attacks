@@ -1,0 +1,32 @@
+
+=== scaling ===
+[SCALING] n=  2500 Decision Tree      0.08s
+[SCALING] n=  2500 Random Forest      0.21s
+[SCALING] n=  2500 Linear SVM         0.07s
+[SCALING] n=  2500 SVM RBF            0.13s
+[SCALING] n=  5000 Decision Tree      0.09s
+[SCALING] n=  5000 Random Forest      0.42s
+[SCALING] n=  5000 Linear SVM         0.23s
+[SCALING] n=  5000 SVM RBF            0.46s
+[SCALING] n= 10000 Decision Tree      0.14s
+[SCALING] n= 10000 Random Forest      0.74s
+[SCALING] n= 10000 Linear SVM         0.37s
+[SCALING] n= 10000 SVM RBF            1.75s
+[SCALING] n= 20000 Decision Tree      0.28s
+[SCALING] n= 20000 Random Forest      1.57s
+[SCALING] n= 20000 Linear SVM         1.38s
+[SCALING] n= 20000 SVM RBF            5.88s
+[SCALING] n= 40000 Decision Tree      0.65s
+[SCALING] n= 40000 Random Forest      3.99s
+[SCALING] n= 40000 Linear SVM         2.68s
+[SCALING] n= 40000 SVM RBF           42.51s
+=== scaling gotovo za 64.3s ===
+
+=== compare ===
+                   Model  N_trening  Accuracy  Precision  Recall     F1  ROC_AUC  PR_AUC    FPR    FNR    MCC  Vreme_treniranja_s  Vreme_predikcije_s
+           Decision Tree     175341    0.8433     0.7868  0.9813 0.8733   0.9727  0.9729 0.3258 0.0187 0.7030              3.6350              0.1747
+           Random Forest     175341    0.8694     0.8146  0.9877 0.8928   0.9812  0.9857 0.2755 0.0123 0.7521             23.2575              0.9521
+Linear SVM (ceo trening)     175341    0.8139     0.7543  0.9818 0.8531   0.9569  0.9675 0.3919 0.0182 0.6512             11.0476              0.1716
+        SVM RBF (uzorak)      20000    0.8229     0.7596  0.9927 0.8606   0.9402  0.9414 0.3850 0.0073 0.6729              6.8233             41.8834
+=== compare gotovo za 2.1s ===
+DONE

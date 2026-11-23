@@ -1,0 +1,146 @@
+{
+  "model": "Linear SVM (uzorak)",
+  "task": "binary",
+  "params": {
+    "C": 10
+  },
+  "n_train": 20000,
+  "n_test": 82332,
+  "n_features_after_encoding": 187,
+  "fit_time_s": 2.807548200013116,
+  "predict_time_s": 0.25925200001802295,
+  "predict_time_per_1000_s": 0.0031488607105138095,
+  "test_metrics": {
+    "accuracy": 0.8133775445756206,
+    "precision": 0.753875870482387,
+    "recall": 0.9814921027089032,
+    "f1": 0.8527565619879062,
+    "balanced_accuracy": 0.7944487540571543,
+    "mcc": 0.6502015695693096,
+    "specificity": 0.6074054054054054,
+    "fpr": 0.3925945945945946,
+    "fnr": 0.0185078972910968,
+    "tn": 22474,
+    "fp": 14526,
+    "fn": 839,
+    "tp": 44493,
+    "roc_auc": 0.9596615963665068,
+    "pr_auc": 0.967976058298083
+  },
+  "train_metrics": {
+    "accuracy": 0.93805,
+    "precision": 0.923008547008547,
+    "recall": 0.9916985013223626,
+    "f1": 0.9561214009986897,
+    "balanced_accuracy": 0.9077152494088332,
+    "mcc": 0.8576166485819905,
+    "specificity": 0.8237319974953037,
+    "fpr": 0.1762680025046963,
+    "fnr": 0.00830149867763738,
+    "tn": 5262,
+    "fp": 1126,
+    "fn": 113,
+    "tp": 13499
+  },
+  "log1p_columns": [
+    "dur",
+    "spkts",
+    "dpkts",
+    "sbytes",
+    "dbytes",
+    "rate",
+    "sload",
+    "dload",
+    "sloss",
+    "dloss",
+    "sinpkt",
+    "dinpkt",
+    "sjit",
+    "djit",
+    "tcprtt",
+    "synack",
+    "ackdat",
+    "smean",
+    "dmean",
+    "trans_depth",
+    "response_body_len",
+    "ct_dst_ltm",
+    "ct_src_dport_ltm",
+    "is_ftp_login",
+    "ct_ftp_cmd",
+    "ct_flw_http_mthd",
+    "is_sm_ips_ports"
+  ],
+  "test_ci95": {
+    "accuracy": [
+      0.8107415707136957,
+      0.8160745518146042
+    ],
+    "precision": [
+      0.7503473023112872,
+      0.7573193298465017
+    ],
+    "recall": [
+      0.9802091640768871,
+      0.9827059955894396
+    ],
+    "f1": [
+      0.8504203563691989,
+      0.8550766691356585
+    ]
+  },
+  "detection_by_category": [
+    {
+      "attack_cat": "Normal",
+      "n": 37000,
+      "detection_rate": 0.6074054054054054
+    },
+    {
+      "attack_cat": "Generic",
+      "n": 18871,
+      "detection_rate": 0.9996290604631445
+    },
+    {
+      "attack_cat": "Exploits",
+      "n": 11132,
+      "detection_rate": 0.9589471793029105
+    },
+    {
+      "attack_cat": "Fuzzers",
+      "n": 6062,
+      "detection_rate": 0.9490267238535137
+    },
+    {
+      "attack_cat": "DoS",
+      "n": 4089,
+      "detection_rate": 0.9887503056982148
+    },
+    {
+      "attack_cat": "Reconnaissance",
+      "n": 3496,
+      "detection_rate": 0.9959954233409611
+    },
+    {
+      "attack_cat": "Analysis",
+      "n": 677,
+      "detection_rate": 1.0
+    },
+    {
+      "attack_cat": "Backdoor",
+      "n": 583,
+      "detection_rate": 0.9965694682675815
+    },
+    {
+      "attack_cat": "Shellcode",
+      "n": 378,
+      "detection_rate": 0.9920634920634921
+    },
+    {
+      "attack_cat": "Worms",
+      "n": 44,
+      "detection_rate": 0.9772727272727273
+    }
+  ],
+  "sampled": true,
+  "sample_size": 20000
+}

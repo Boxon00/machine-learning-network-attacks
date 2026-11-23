@@ -1,0 +1,51 @@
+Model,attack_cat,n,detection_rate
+Decision Tree,Normal,37000,0.6742432432432433
+Decision Tree,Generic,18871,0.9973504318796036
+Decision Tree,Exploits,11132,0.990298239310097
+Decision Tree,Fuzzers,6062,0.906301550643352
+Decision Tree,DoS,4089,0.9885057471264368
+Decision Tree,Reconnaissance,3496,0.9974256292906178
+Decision Tree,Analysis,677,0.912850812407681
+Decision Tree,Backdoor,583,0.9897084048027445
+Decision Tree,Shellcode,378,0.9973544973544973
+Decision Tree,Worms,44,0.9772727272727273
+Random Forest,Normal,37000,0.7245405405405405
+Random Forest,Generic,18871,0.9999470086375921
+Random Forest,Exploits,11132,0.9962270930650378
+Random Forest,Fuzzers,6062,0.9157043879907621
+Random Forest,DoS,4089,0.9995108828564441
+Random Forest,Reconnaissance,3496,0.9997139588100686
+Random Forest,Analysis,677,1.0
+Random Forest,Backdoor,583,1.0
+Random Forest,Shellcode,378,0.9947089947089947
+Random Forest,Worms,44,1.0
+Linear SVM (ceo trening),Normal,37000,0.6082162162162162
+Linear SVM (ceo trening),Generic,18871,0.9995230777383286
+Linear SVM (ceo trening),Exploits,11132,0.9681099532878189
+Linear SVM (ceo trening),Fuzzers,6062,0.9343451006268558
+Linear SVM (ceo trening),DoS,4089,0.9887503056982148
+Linear SVM (ceo trening),Reconnaissance,3496,0.9977116704805492
+Linear SVM (ceo trening),Analysis,677,0.9970457902511078
+Linear SVM (ceo trening),Backdoor,583,0.9931389365351629
+Linear SVM (ceo trening),Shellcode,378,0.9920634920634921
+Linear SVM (ceo trening),Worms,44,0.9772727272727273
+SVM RBF (uzorak),Normal,37000,0.615
+SVM RBF (uzorak),Generic,18871,1.0
+SVM RBF (uzorak),Exploits,11132,0.9988321954725117
+SVM RBF (uzorak),Fuzzers,6062,0.9483668756186078
+SVM RBF (uzorak),DoS,4089,1.0
+SVM RBF (uzorak),Reconnaissance,3496,0.9991418764302059
+SVM RBF (uzorak),Analysis,677,1.0
+SVM RBF (uzorak),Backdoor,583,1.0
+SVM RBF (uzorak),Shellcode,378,0.9920634920634921
+SVM RBF (uzorak),Worms,44,0.9772727272727273
+Linear SVM (uzorak),Normal,37000,0.6074054054054054
+Linear SVM (uzorak),Generic,18871,0.9996290604631445
+Linear SVM (uzorak),Exploits,11132,0.9589471793029105
+Linear SVM (uzorak),Fuzzers,6062,0.9490267238535137
+Linear SVM (uzorak),DoS,4089,0.9887503056982148
+Linear SVM (uzorak),Reconnaissance,3496,0.9959954233409611
+Linear SVM (uzorak),Analysis,677,1.0
+Linear SVM (uzorak),Backdoor,583,0.9965694682675815
+Linear SVM (uzorak),Shellcode,378,0.9920634920634921
+Linear SVM (uzorak),Worms,44,0.9772727272727273

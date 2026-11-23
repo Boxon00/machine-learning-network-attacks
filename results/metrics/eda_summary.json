@@ -1,0 +1,42 @@
+{
+  "trening_oblik": [
+    175341,
+    45
+  ],
+  "test_oblik": [
+    82332,
+    45
+  ],
+  "label_trening": {
+    "1": 119341,
+    "0": 56000
+  },
+  "label_test": {
+    "1": 45332,
+    "0": 37000
+  },
+  "udeo_napada_trening": 0.6806223302022916,
+  "udeo_napada_test": 0.5506000097167566,
+  "beskonacne_vrednosti": 0,
+  "duplikati": {
+    "duplikati_svi_atributi_trening": 0,
+    "duplikati_svi_atributi_test": 0,
+    "duplikati_bez_id_trening": 67601,
+    "duplikati_bez_id_test": 26387,
+    "jedinstveni_bez_id_trening": 107740,
+    "jedinstveni_bez_id_test": 55945,
+    "udeo_napada_medju_duplikatima_trening": 0.9392020828094259,
+    "udeo_napada_medju_duplikatima_test": 0.894114526092394,
+    "udeo_napada_posle_dedup_trening": 0.5183775756450715,
+    "udeo_napada_posle_dedup_test": 0.3885780677451068
+  },
+  "preklapanje": {
+    "test_zapisa_identicnih_treningu": 8541,
+    "test_ukupno": 82332,
+    "udeo_preklapanja": 0.10373852208132925,
+    "kontradiktornih_grupa_u_treningu": 229
+  },
+  "broj_numerickih_ulaznih": 39,
+  "broj_kategorijskih_ulaznih": 3,
+  "konstantne_kolone": []
+}
